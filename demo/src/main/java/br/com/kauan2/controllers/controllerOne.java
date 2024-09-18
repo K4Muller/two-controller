@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +26,14 @@ public class controllerOne {
     @GetMapping("/java/medotoQuery2")
     public String metodoQueryParams2(@RequestParam Map<String, String> allParams) {
         return "Parametro com metodoQueryParams2 é " + allParams.entrySet();
+    }
+
+    //Aula de body params
+    @PostMapping("/java/metodoBodyParams")
+    public String metodoBodyParams(@RequestBody User user) {
+        return "metodoComBodyParams " + user.username();
+    }
+    record User(String username){
+
     }
 }
