@@ -1,15 +1,28 @@
 package br.com.kauan2.controllers;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.Map;
 
-@ComponentScan
-@RequestMapping("/twoController")
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/two")
 public class controllerOne {
-    @GetMapping("/01")
-    public String metodo() {
-        return "Api 2 pq a outra deu PT";
+    @GetMapping("/java/{id}")
+    public String metodo(@PathVariable String id) {
+        return "O parametro é " + id;
     }
 
+    @GetMapping("/java/medotoQuery1")
+    public String metodoQueryParams(@RequestParam String id) {
+        return "Parametro com metodoQueryParams é " + id;
+    }
+
+    @GetMapping("/java/medotoQuery2")
+    public String metodoQueryParams2(@RequestParam Map<String, String> allParams) {
+        return "Parametro com metodoQueryParams2 é " + allParams.entrySet();
+    }
 }
